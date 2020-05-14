@@ -47,6 +47,17 @@ def test_custom_level(tmp_path):
     assert obj == obj2
 
 
+def test_level_min_max(tmp_path):
+    obj = {"spam": "ham"}
+    dump_path = str(tmp_path / "dump.zst")
+    joblib.dump(obj, dump_path, compress=0)
+    obj2 = joblib.load(dump_path)
+    assert obj == obj2
+    joblib.dump(obj, dump_path, compress=9)
+    obj2 = joblib.load(dump_path)
+    assert obj == obj2
+
+
 def test_invalid_custom_level():
     with pytest.raises(ValueError, match=r"compress_levels L must be list or tuple.*"):
         joblib_zstd.register(compress_levels=[1, 2, 3, 4, 5, 6, 7, 8, 9])
