@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "joblib-zstd"
-version = "0.1.0"
+version = "0.1.1"
 description = "Add Zstandard compression/decompression functionality for joblib"
 authors = ["Hiroyuki Tanaka <aflc0x@gmail.com>"]
 license = "MIT"
