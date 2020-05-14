@@ -1,0 +1,34 @@
+default_stages: [commit, push]
+fail_fast: true
+repos:
+  - repo: https://github.com/asottile/seed-isort-config
+    rev: v2.1.1
+    hooks:
+      - id: seed-isort-config
+  - repo: https://github.com/timothycrosley/isort
+    rev: 4.3.21
+    hooks:
+      - id: isort
+  - repo: https://github.com/ambv/black
+    rev: stable
+    hooks:
+      - id: black
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: 3.8.1
+    hooks:
+      - id: flake8
+  - repo: local
+    hooks:
+      - id: install-pylint
+        name: install-pylint
+        entry: python -m pip install pylint
+        language: system
+        types: [python]
+        pass_filenames: false
+  - repo: local
+    hooks:
+      - id: pylint
+        name: pylint
+        entry: python -m pylint.__main__
+        language: system
+        types: [python]

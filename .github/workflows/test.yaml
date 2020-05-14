@@ -1,0 +1,40 @@
+# Pull Request作成時、push時に走る
+name: TEST
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+jobs:
+  check_label:
+    runs-on: ubuntu-18.04
+    name: Check conditions if subsequent job need to run
+    if: "! contains(github.event.pull_request.labels.*.name, 'skip ci')"
+    steps:
+      - run: echo run ci
+  test:
+    name: Test
+    runs-on: ubuntu-18.04
+    needs: check_label
+    strategy:
+      matrix:
+        python-version: [3.5, 3.6, 3.7, 3.8]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: setup
+        run: pip3 install -U poetry
+
+      - name: core test
+        run: |
+          poetry install
+          poetry run pytest tests
+      - name: test by pip install
+        run: |
+          rm -rf .venv
+          poetry run pip install -U pip setuptools
+          poetry run pip install .
+          poetry run pytest tests

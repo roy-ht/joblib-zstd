@@ -1,4 +1,8 @@
-joblib-zstd is a plugin, which enables Zstandard (.zst) compression and decompression.
+joblib-zstd is a plugin, which enables Zstandard (.zst) compression and decompression through joblib.dump and joblib.load.
+
+# Prerequisites
+
+You need [joblib](https://joblib.readthedocs.io/en/latest/).
 
 # Install
 
