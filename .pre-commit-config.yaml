@@ -17,10 +17,6 @@ repos:
     rev: 3.8.1
     hooks:
       - id: flake8
-  - repo: https://github.com/PyCQA/pydocstyle
-    rev: 5.0.2
-    hooks:
-      - id: pydocstyle
   - repo: local
     hooks:
       - id: install-pylint

@@ -7,14 +7,16 @@ DEFAULT_COMPRESS_LEVELS = (1, 2, 3, 6, 9, 12, 15, 19, 22)
 
 
 class ZStandardCompressorWrapper(CompressorWrapper):
-    prefix = b"\x28\xb5\x2f\xfd"
-    extension = ".zst"
+    """joblib CompressorWrapper for Zstandard format"""
+
+    # prefix = b"\x28\xb5\x2f\xfd"
+    # extension = ".zst"
 
     def __init__(self, compress_levels, compressor_args, decompressor_args):
+        super().__init__(ZstandardFile, b"\x28\xb5\x2f\xfd", ".zst")
         self._comprss_levels = compress_levels or DEFAULT_COMPRESS_LEVELS
         self._compressor_args = compressor_args
         self._decompressor_args = decompressor_args
-        self.fileobj_factory = ZstandardFile
 
     def compressor_file(self, fileobj, compresslevel=None):
         """Returns an instance of a compressor file object."""
@@ -41,5 +43,5 @@ def register(compress_levels=None, compressor_args=None, decompressor_args=None,
     if compress_levels and (not isinstance(compress_levels, (list, tuple)) or len(compress_levels) != 10):
         raise ValueError("compress_levels L must be list or tuple, len(L) == 10, 1 <= L[i] <= 22.")
     joblib.register_compressor(
-        "zstd", ZStandardCompressorWrapper(compress_levels, compressor_args, decompressor_args), force=force
+        "zstd", ZStandardCompressorWrapper(compress_levels, compressor_args, decompressor_args), force=force,
     )

@@ -1,18 +1,13 @@
-[MASTER]
-extension-pkg-whitelist=tensorflow
-unsafe-load-any-extension=y
-
 [SPELLING]
 # max-spelling-suggestions=4
 max-spelling-suggestions=0
 
 [MESSAGES CONTROL]
-disable=R,C0330,C0412,C0114
+disable=R,C0330,C0412,C0114,C0116
 
 [FORMAT]
 max-line-length=120
 
 [BASIC]
-# 一文字変数も許す
 variable-rgx=[a-z_][a-z0-9_]*$
 argument-rgx=[a-z_][a-z0-9_]*$

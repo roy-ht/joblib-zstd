@@ -5,7 +5,12 @@ import zstandard as zstd
 
 
 class ZstandardFile(io.RawIOBase):
-    def __init__(self, filename_or_obj, mode="r", compresslevel=3, compressor_args=None, decompressor_args=None):
+    """File like object interface of Zstanrard archive"""
+
+    def __init__(
+        self, filename_or_obj, mode="r", compresslevel=3, compressor_args=None, decompressor_args=None,
+    ):
+        super().__init__()
         self.ctx = None
         self.stream = None
         self.fileobj = None
