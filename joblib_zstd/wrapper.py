@@ -3,14 +3,11 @@ from joblib.compressor import CompressorWrapper
 
 from .file import ZstandardFile
 
-DEFAULT_COMPRESS_LEVELS = (1, 2, 3, 6, 9, 12, 15, 19, 22)
+DEFAULT_COMPRESS_LEVELS = (1, 2, 3, 6, 9, 12, 15, 18, 20, 22)
 
 
 class ZStandardCompressorWrapper(CompressorWrapper):
     """joblib CompressorWrapper for Zstandard format"""
-
-    # prefix = b"\x28\xb5\x2f\xfd"
-    # extension = ".zst"
 
     def __init__(self, compress_levels, compressor_args, decompressor_args):
         super().__init__(ZstandardFile, b"\x28\xb5\x2f\xfd", ".zst")

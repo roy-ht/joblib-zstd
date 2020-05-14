@@ -10,6 +10,12 @@ You need [joblib](https://joblib.readthedocs.io/en/latest/).
 pip install joblib-zstd
 ```
 
+If you failed to install, update version of pip and setuptools:
+
+```
+pip install -U pip setuptools
+```
+
 # Usage
 
 ```python
