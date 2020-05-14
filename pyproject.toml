@@ -4,6 +4,10 @@ version = "0.1.0"
 description = "Add Zstandard compression/decompression functionality for joblib"
 authors = ["Hiroyuki Tanaka <aflc0x@gmail.com>"]
 license = "MIT"
+readme = 'README.md'
+repository = 'https://github.com/roy-ht/joblib-zstd'
+keywords = ['joblib', 'Zstandard']
+
 
 [tool.poetry.dependencies]
 python = "^3.5"
