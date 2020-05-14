@@ -35,5 +35,5 @@ jobs:
       - name: test by pip install
         run: |
           rm -rf .venv
-          poetry run pip install -e .
+          poetry run pip install .
           poetry run pytest tests
